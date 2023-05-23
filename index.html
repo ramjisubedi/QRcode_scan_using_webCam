@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <!-- InstaScan Scanner <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
+
+<script src="https://reeteshghimire.com.np/wp-content/uploads/2021/05/html5-qrcode.min_.js" ></script>
 </head>
-<body>
-    <video id="preview"></video>
+<body> 
+    <!-- <video id="preview"></video>
     <script type="text/javascript">
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
         scanner.addListener('scan', function (content) {
@@ -24,6 +26,43 @@
         }).catch(function (e) {
           console.error(e);
         });
+      </script> -->
+      <style>
+        .result{
+          background-color: green;
+          color:#fff;
+          padding:20px;
+        }
+        .row{
+          display:flex;
+        }
+      </style>
+      
+      
+      <div class="row">
+        <div class="col">
+          <div style="width:500px;" id="reader"></div>
+        </div>
+        <div class="col" style="padding:30px;">
+          <h4>SCAN RESULT</h4>
+          <div id="result">Result Here</div>
+        </div>
+      </div>
+      
+      
+      <script type="text/javascript">
+      function onScanSuccess(qrCodeMessage) {
+          document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+      }
+      
+      function onScanError(errorMessage) {
+        //handle scan error
+      }
+      
+      var html5QrcodeScanner = new Html5QrcodeScanner(
+          "reader", { fps: 10, qrbox: 250 });
+      html5QrcodeScanner.render(onScanSuccess, onScanError);
+      
       </script>
 </body>
 </html>
